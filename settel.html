@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+1. 大并发：负载均衡
+1. 负载均衡器：硬件（f5 20w） 和 软件（七层 nginx） （四层 lvs）【运维】
+2. 负载均衡算法（调度算法）：1. 轮询（轮着，一个一个） 2. 加权（能者多劳） 3. iphash（ip % 服务器台数（N） == 0--N-1 ）
+
+2. 大流量：浏览器的缓存、
+
+
+
+服务器的压缩（两种：本身文件压缩，将文件的空格注释去掉）、
+减少http的请求(TCP/IP)
+1. （将多个静态合并js 、 css） grunt工具可以去除静态文件里面的空格 注释
+
+2. 在服务器端使用 压缩的技术单独压缩（gzip， deflate）,目前deflate支持度更好。对应在浏览器需要解压
+注意：一般图片和视频是不能压缩，本身压缩需要服务器消耗资源，本身图片和视频的压缩度已经很高了。这里可以压缩的是文本内容 html xml
+aaaaaaaaaaaa   == 10a
+10a == aaaaaaaaa
+
+3. 把静态的资源放在CDN（把静态资源放在离你家最近的同一个运营商的机房的服务器，蓝汛，七牛，青牛）【运维】
+http://www.aliyun.com/product/cdn/?utm_medium=text&utm_source=baidu&utm_campaign=st1#cdn&utm_content=se_45097
+
+http://www.qiniu.com/cdnjiangjia?utm_campaign=cdnjiangjia&utm_source=baidu&utm_medium=advposition&utm_content=png
+
+
+http://www.bootcdn.cn/
+
+
+http://www.bootcss.com/
+
+3. 查找慢：缓存技术（页面静态化和nosql内存优化）和MySQL自身优化 【重点学习】
+注意：网站的瓶颈永远都是在 磁盘IO 或者说是 MySQL
+
+缓存技术：
+1. 页面静态化：真静态和伪静态
+真静态：形成真正的静态html文件 效率上 快
+伪静态：在URL地址上做出一个类似静态URL的地址 形式上 好 并且利于（SEO）
+
+2. nosql技术，将数据库里面的数据缓存到内存中，下次请求直接从内存中获取
+
+3. MySQL自身优化：
+1. 设计：字段属性（tinyint char varchar），范式 ，存储引擎
+2. MySQL自身：索引（主键、唯一、普通、全文） 、 分区、 分表
+3. MySQL的架构：读写分离（基础是依赖于主从复制）
+4. 自身经验（sql语句）
+5. 硬件升级
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<ol>
+<li>大并发：负载均衡</li>
+<li>负载均衡器：硬件（f5 20w） 和 软件（七层 nginx） （四层 lvs）【运维】</li>
+<li><p>负载均衡算法（调度算法）：1. 轮询（轮着，一个一个） 2. 加权（能者多劳） 3. iphash（ip % 服务器台数（N） == 0--N-1 ）</p></li>
+<li><p>大流量：浏览器的缓存、</p></li>
+</ol>
+
+<p>服务器的压缩（两种：本身文件压缩，将文件的空格注释去掉）、
+减少http的请求(TCP/IP)
+1. （将多个静态合并js 、 css） grunt工具可以去除静态文件里面的空格 注释</p>
+
+<ol>
+<li><p>在服务器端使用 压缩的技术单独压缩（gzip， deflate）,目前deflate支持度更好。对应在浏览器需要解压
+注意：一般图片和视频是不能压缩，本身压缩需要服务器消耗资源，本身图片和视频的压缩度已经很高了。这里可以压缩的是文本内容 html xml
+aaaaaaaaaaaa   == 10a
+10a == aaaaaaaaa</p></li>
+<li><p>把静态的资源放在CDN（把静态资源放在离你家最近的同一个运营商的机房的服务器，蓝汛，七牛，青牛）【运维】
+http://www.aliyun.com/product/cdn/?utm<em>medium=text&amp;utm</em>source=baidu&amp;utm<em>campaign=st1#cdn&amp;utm</em>content=se_45097</p></li>
+</ol>
+
+<p>http://www.qiniu.com/cdnjiangjia?utm<em>campaign=cdnjiangjia&amp;utm</em>source=baidu&amp;utm<em>medium=advposition&amp;utm</em>content=png</p>
+
+<p>http://www.bootcdn.cn/</p>
+
+<p>http://www.bootcss.com/</p>
+
+<ol>
+<li>查找慢：缓存技术（页面静态化和nosql内存优化）和MySQL自身优化 【重点学习】
+注意：网站的瓶颈永远都是在 磁盘IO 或者说是 MySQL</li>
+</ol>
+
+<p>缓存技术：
+1. 页面静态化：真静态和伪静态
+真静态：形成真正的静态html文件 效率上 快
+伪静态：在URL地址上做出一个类似静态URL的地址 形式上 好 并且利于（SEO）</p>
+
+<ol>
+<li><p>nosql技术，将数据库里面的数据缓存到内存中，下次请求直接从内存中获取</p></li>
+<li><p>MySQL自身优化：</p></li>
+<li>设计：字段属性（tinyint char varchar），范式 ，存储引擎</li>
+<li>MySQL自身：索引（主键、唯一、普通、全文） 、 分区、 分表</li>
+<li>MySQL的架构：读写分离（基础是依赖于主从复制）</li>
+<li>自身经验（sql语句）</li>
+<li>硬件升级</li>
+</ol>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "settel.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
