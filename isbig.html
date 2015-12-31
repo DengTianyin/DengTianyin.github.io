@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+问题：如何判断一个网站是不是大型网站？
+1. 大的访问
+2. 流量
+3. 数据存储
+
+问题：大访问的网站一定流量大吗？
+hao123 (百度 500w) vip（500）静态页面（资源聚合页） 小米（2亿）http://www.mi.com/
+
+业内定义了一些简单的标准，来判定一个网站是不是大型网站？
+答：
+1. PV值（pages view）:页面访问总量： 一天（24）内，一个网站所有页面访问总和 千万级别
+2. UV值（unique visitor）：独立访问值：一天（24）内，一个网站所有访问用户的总和 百万级别
+3. IP值（独立IP）:一天（24）内，一个网站所有访问IP的总和 十万 百万级别
+
+分析工具： 站长工具
+http://www.aizhan.com/siteall/www.itcast.cn/
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>问题：如何判断一个网站是不是大型网站？
+1. 大的访问
+2. 流量
+3. 数据存储</p>
+
+<p>问题：大访问的网站一定流量大吗？
+hao123 (百度 500w) vip（500）静态页面（资源聚合页） 小米（2亿）http://www.mi.com/</p>
+
+<p>业内定义了一些简单的标准，来判定一个网站是不是大型网站？
+答：
+1. PV值（pages view）:页面访问总量： 一天（24）内，一个网站所有页面访问总和 千万级别
+2. UV值（unique visitor）：独立访问值：一天（24）内，一个网站所有访问用户的总和 百万级别
+3. IP值（独立IP）:一天（24）内，一个网站所有访问IP的总和 十万 百万级别</p>
+
+<p>分析工具： 站长工具
+http://www.aizhan.com/siteall/www.itcast.cn/</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "isbig.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
